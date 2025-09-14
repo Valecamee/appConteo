@@ -1,0 +1,243 @@
+/* Contenedor de imagen del movimiento */
+.movement-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.movement-image {
+  max-width: 100%;
+  max-height: 120px;
+  width: auto;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.movement-image:hover {
+  transform: scale(1.05);
+}
+
+.vehicle-counter {
+  width: 100%;
+}
+
+.vehicles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.vehicle-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.vehicle-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.vehicle-item:hover::before {
+  left: 100%;
+}
+
+.vehicle-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.vehicle-button {
+  width: 100%;
+  padding: 12px 8px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--vehicle-color), rgba(255, 255, 255, 0.1));
+  color: white;
+  font-family: 'Arial', 'Helvetica', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  min-height: 65px;
+}
+
+.vehicle-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.vehicle-button:hover::before {
+  transform: translateX(100%);
+}
+
+.vehicle-button:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+.vehicle-button:active {
+  transform: scale(0.98);
+}
+
+/* Ícono de React Icons */
+.vehicle-icon {
+  color: white;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  transition: all 0.3s ease;
+  width: 36px;
+  height: 36px;
+}
+
+.vehicle-button:hover .vehicle-icon {
+  transform: scale(1.1);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+}
+
+/* Etiqueta del vehículo */
+.vehicle-label {
+  font-size: 0.8rem;
+  text-align: center;
+  line-height: 1.1;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  font-weight: 600;
+  color: white;
+  opacity: 0.9;
+}
+
+.counter-display {
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid var(--vehicle-color);
+  border-radius: 15px;
+  padding: 4px 8px;
+  min-width: 40px;
+  text-align: center;
+  position: relative;
+  backdrop-filter: blur(5px);
+}
+
+.counter-display::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--vehicle-color), transparent, var(--vehicle-color));
+  border-radius: 20px;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+.counter-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--vehicle-color);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+  animation: counterPulse 0.3s ease-out;
+}
+
+@keyframes counterPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .vehicles-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+  
+  .vehicle-item {
+    padding: 6px;
+  }
+  
+  .vehicle-button {
+    padding: 10px 6px;
+    min-height: 55px;
+    gap: 4px;
+  }
+  
+  .vehicle-icon {
+    width: 28px !important;
+    height: 28px !important;
+  }
+  
+  .vehicle-label {
+    font-size: 0.75rem;
+  }
+  
+  .counter-value {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .vehicles-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+  }
+  
+  .vehicle-item {
+    padding: 5px;
+  }
+  
+  .vehicle-button {
+    padding: 8px 5px;
+    min-height: 50px;
+    font-size: 0.8rem;
+    gap: 3px;
+  }
+  
+  .vehicle-icon {
+    width: 24px !important;
+    height: 24px !important;
+  }
+  
+  .vehicle-label {
+    font-size: 0.7rem;
+  }
+  
+  .counter-value {
+    font-size: 0.9rem;
+  }
+}

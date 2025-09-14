@@ -1,0 +1,234 @@
+.saved-counts {
+  margin-top: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 25px;
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.saved-counts-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.saved-counts-header h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, #4ecdc4, #45b7d1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.download-button {
+  background: linear-gradient(45deg, #26de81, #20bf6b);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-family: 'Arial', 'Helvetica', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(38, 222, 129, 0.3);
+}
+
+.download-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(38, 222, 129, 0.4);
+}
+
+.counts-table-container {
+  overflow-x: auto;
+  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.counts-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Arial', 'Helvetica', sans-serif;
+}
+
+.counts-table th {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 15px 12px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.section-header {
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.section-header.m1 {
+  background: rgba(78, 205, 196, 0.2);
+  color: #4ecdc4;
+}
+
+.section-header.m2 {
+  background: rgba(69, 183, 209, 0.2);
+  color: #45b7d1;
+}
+
+.sub-header {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.vehicle-type {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.counts-table td {
+  padding: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 1rem;
+}
+
+.counts-table tbody tr {
+  transition: background-color 0.3s ease;
+}
+
+.counts-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.count-name {
+  font-weight: 600;
+  color: #4ecdc4;
+}
+
+.count-date {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+}
+
+.count-total {
+  font-weight: 700;
+  text-align: center;
+}
+
+.count-detail {
+  font-weight: 600;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.count-detail.m1-autos {
+  color: #4ecdc4;
+  background: rgba(78, 205, 196, 0.1);
+}
+
+.count-detail.m1-otros {
+  color: #4ecdc4;
+  background: rgba(78, 205, 196, 0.05);
+}
+
+.count-detail.m2-autos {
+  color: #45b7d1;
+  background: rgba(69, 183, 209, 0.1);
+}
+
+.count-detail.m2-otros {
+  color: #45b7d1;
+  background: rgba(69, 183, 209, 0.05);
+}
+
+.count-total.general {
+  color: #ff6b6b;
+  font-size: 1.1rem;
+  font-weight: 700;
+  background: rgba(255, 107, 107, 0.1);
+}
+
+.count-actions {
+  text-align: center;
+}
+
+.delete-button {
+  background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+}
+
+.delete-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .saved-counts {
+    padding: 20px;
+    margin-top: 30px;
+  }
+  
+  .saved-counts-header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+  
+  .saved-counts-header h3 {
+    font-size: 1.5rem;
+  }
+  
+  .counts-table th,
+  .counts-table td {
+    padding: 6px 4px;
+    font-size: 0.8rem;
+  }
+  
+  .section-header {
+    font-size: 1rem;
+  }
+  
+  .vehicle-type {
+    font-size: 0.75rem;
+  }
+  
+  .count-name {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .count-date {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .counts-table-container {
+    overflow-x: auto;
+  }
+  
+  .counts-table {
+    min-width: 600px;
+  }
+} 
