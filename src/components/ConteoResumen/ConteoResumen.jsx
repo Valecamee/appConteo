@@ -24,12 +24,18 @@ const ConteoResumen = ({
   const calcularEstadisticas = () => {
     let totalGeneral = 0
     const totalesPorTipo = {
-      carros: 0,
+      autos: 0,
       buses: 0,
       camiones: 0,
       motos: 0,
       bicicletas: 0,
       peatones: 0
+    }
+
+    // Verificar que conteoData y franjas existan
+    if (!conteoData || !conteoData.franjas) {
+      console.warn('ConteoResumen: conteoData o franjas no están disponibles')
+      return { totalGeneral, totalesPorTipo }
     }
 
     conteoData.franjas.forEach(franja => {
@@ -69,6 +75,10 @@ const ConteoResumen = ({
     let maxTotal = 0
     let franjaMasActiva = null
 
+    if (!conteoData || !conteoData.franjas) {
+      return { franja: null, total: 0 }
+    }
+
     conteoData.franjas.forEach(franja => {
       let totalFranja = 0
       franja.movimientos.forEach(movimiento => {
@@ -88,7 +98,34 @@ const ConteoResumen = ({
 
   const estadisticas = calcularEstadisticas()
   const franjaMasActiva = getFranjaMasActiva()
-  const duracionTotal = conteoData.config.duracionTotal
+  const duracionTotal = conteoData?.config?.duracionTotal || 0
+
+  // Si no hay datos, mostrar mensaje
+  if (!conteoData || !conteoData.franjas || conteoData.franjas.length === 0) {
+    return (
+      <div className="resumen-container">
+        <div className="no-data-message">
+          <h2>No hay datos de conteo disponibles</h2>
+          <p>No se encontraron franjas guardadas para mostrar el resumen.</p>
+          <button 
+            onClick={onBackToDashboard}
+            style={{
+              background: 'linear-gradient(45deg, #26de81, #20bf6b)',
+              border: 'none',
+              color: 'white',
+              padding: '12px 25px',
+              borderRadius: '15px',
+              cursor: 'pointer',
+              fontWeight: '600',
+              marginTop: '20px'
+            }}
+          >
+            Volver al Dashboard
+          </button>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="resumen-container">
@@ -188,7 +225,7 @@ const ConteoResumen = ({
         <div className="vehicles-grid">
           {Object.entries(estadisticas.totalesPorTipo).map(([tipo, total]) => {
             const iconos = {
-              carros: '🚗',
+              autos: '🚗',
               buses: '🚌',
               camiones: '🚛',
               motos: '🏍️',
@@ -197,7 +234,7 @@ const ConteoResumen = ({
             }
             
             const nombres = {
-              carros: 'Carros',
+              autos: 'Autos',
               buses: 'Buses',
               camiones: 'Camiones',
               motos: 'Motos',

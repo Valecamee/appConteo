@@ -1,51 +1,31 @@
-/* Contenedor de imagen del movimiento */
-.movement-image-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 15px;
-  padding: 10px;
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.movement-image {
-  max-width: 100%;
-  max-height: 120px;
-  width: auto;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
-}
-
-.movement-image:hover {
-  transform: scale(1.05);
-}
 
 .vehicle-counter {
   width: 100%;
 }
 
 .vehicles-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  flex-wrap: nowrap;
 }
 
 .vehicle-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  padding: 8px;
+  gap: 3px;
+  padding: 4px;
   background: rgba(255, 255, 255, 0.03);
-  border-radius: 10px;
+  border-radius: 6px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  flex: 1;
+  min-width: 0;
+  max-width: 130px;
+
 }
 
 .vehicle-item::before {
@@ -71,14 +51,14 @@
 
 .vehicle-button {
   width: 100%;
-  padding: 12px 8px;
+  padding: 7px 5px;
   border: none;
-  border-radius: 8px;
+  border-radius: 4px;
   background: linear-gradient(135deg, var(--vehicle-color), rgba(255, 255, 255, 0.1));
   color: white;
   font-family: 'Arial', 'Helvetica', sans-serif;
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 0.66rem;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
@@ -87,9 +67,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-  min-height: 65px;
+  gap: 2px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  min-height: 80px;
 }
 
 .vehicle-button::before {
@@ -122,8 +102,8 @@
   color: white;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
   transition: all 0.3s ease;
-  width: 36px;
-  height: 36px;
+  width: 50px;
+  height: 50px;
 }
 
 .vehicle-button:hover .vehicle-icon {
@@ -133,21 +113,26 @@
 
 /* Etiqueta del vehículo */
 .vehicle-label {
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   text-align: center;
-  line-height: 1.1;
+  line-height: 1.0;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
   font-weight: 600;
   color: white;
   opacity: 0.9;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
 }
 
 .counter-display {
   background: rgba(0, 0, 0, 0.3);
-  border: 2px solid var(--vehicle-color);
-  border-radius: 15px;
-  padding: 4px 8px;
-  min-width: 40px;
+  border: 1px solid var(--vehicle-color);
+  border-radius: 8px;
+  padding: 2px 5px;
+  min-width: 50px;
+  min-height: 50px;
   text-align: center;
   position: relative;
   backdrop-filter: blur(5px);
@@ -164,11 +149,13 @@
   border-radius: 20px;
   z-index: -1;
   opacity: 0.3;
+  text-align: center;
+  position: center;
 }
 
 .counter-value {
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-size: 2rem;
+  font-weight: 600;
   color: var(--vehicle-color);
   text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
   animation: counterPulse 0.3s ease-out;
@@ -183,61 +170,62 @@
 /* Responsive design */
 @media (max-width: 768px) {
   .vehicles-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 6px;
+    gap: 3px;
   }
   
   .vehicle-item {
-    padding: 6px;
+    padding: 3px;
+    max-width: 66px;
   }
   
   .vehicle-button {
-    padding: 10px 6px;
-    min-height: 55px;
-    gap: 4px;
+    padding: 6px 4px;
+    min-height: 38px;
+    gap: 1px;
+    font-size: 0.6rem;
   }
   
   .vehicle-icon {
-    width: 28px !important;
-    height: 28px !important;
+    width: 20px !important;
+    height: 20px !important;
   }
   
   .vehicle-label {
-    font-size: 0.75rem;
+    font-size: 0.55rem;
   }
   
   .counter-value {
-    font-size: 1rem;
+    font-size: 0.77rem;
   }
 }
 
 @media (max-width: 480px) {
   .vehicles-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 5px;
+    gap: 2px;
   }
   
   .vehicle-item {
-    padding: 5px;
+    padding: 2px;
+    max-width: 55px;
   }
   
   .vehicle-button {
-    padding: 8px 5px;
-    min-height: 50px;
-    font-size: 0.8rem;
-    gap: 3px;
+    padding: 4px 3px;
+    min-height: 33px;
+    font-size: 0.55rem;
+    gap: 1px;
   }
   
   .vehicle-icon {
-    width: 24px !important;
-    height: 24px !important;
+    width: 18px !important;
+    height: 18px !important;
   }
   
   .vehicle-label {
-    font-size: 0.7rem;
+    font-size: 0.5rem;
   }
   
   .counter-value {
-    font-size: 0.9rem;
+    font-size: 0.72rem;
   }
 }

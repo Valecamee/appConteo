@@ -1,0 +1,317 @@
+.project-view-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a3a 50%, #2d1b69 100%);
+  padding: 20px;
+  color: white;
+  position: relative;
+}
+
+.project-view-container::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.project-header h1 {
+  font-size: 2.5rem;
+  background: linear-gradient(45deg, #45b7d1, #4ecdc4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}
+
+.back-button, .download-csv-button {
+  background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+  border: none;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.download-csv-button {
+  background: linear-gradient(45deg, #4ecdc4, #45b7d1);
+}
+
+.back-button:hover, .download-csv-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.project-info {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(69, 183, 209, 0.3);
+  border-radius: 25px;
+  padding: 30px;
+  margin-bottom: 30px;
+  backdrop-filter: blur(15px);
+}
+
+.project-info h2 {
+  color: #4ecdc4;
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.project-details p {
+  margin-bottom: 10px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+}
+
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-left: 10px;
+}
+
+.status-active {
+  background: linear-gradient(45deg, #4ecdc4, #45b7d1);
+  color: white;
+}
+
+.status-completed {
+  background: linear-gradient(45deg, #56ab2f, #a8e6cf);
+  color: white;
+}
+
+.status-paused {
+  background: linear-gradient(45deg, #ffd93d, #ff6b6b);
+  color: white;
+}
+
+.status-cancelled {
+  background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+  color: white;
+}
+
+.status-unknown {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.assigned-users-section {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 211, 61, 0.3);
+  border-radius: 25px;
+  padding: 30px;
+  backdrop-filter: blur(15px);
+}
+
+.assigned-users-section h3 {
+  color: #ffd93d;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+}
+
+.no-users {
+  text-align: center;
+  padding: 40px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.2rem;
+}
+
+.users-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 20px;
+}
+
+.user-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.user-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  border-color: rgba(69, 183, 209, 0.5);
+}
+
+.user-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 10px;
+}
+
+.user-header h4 {
+  color: #4ecdc4;
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.user-status {
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.status-approved {
+  background: linear-gradient(45deg, #56ab2f, #a8e6cf);
+  color: white;
+}
+
+.status-pending {
+  background: linear-gradient(45deg, #ffd93d, #ff6b6b);
+  color: white;
+}
+
+.status-rejected {
+  background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+  color: white;
+}
+
+.user-details p {
+  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+}
+
+.assignment-info, .user-stats {
+  margin-top: 15px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  border-left: 4px solid #4ecdc4;
+}
+
+.assignment-info h5, .user-stats h5 {
+  color: #4ecdc4;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.assignment-status {
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-left: 8px;
+}
+
+.status-assigned {
+  background: linear-gradient(45deg, #ffd93d, #ff6b6b);
+  color: white;
+}
+
+.status-active {
+  background: linear-gradient(45deg, #4ecdc4, #45b7d1);
+  color: white;
+}
+
+.status-completed {
+  background: linear-gradient(45deg, #56ab2f, #a8e6cf);
+  color: white;
+}
+
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  color: white;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid #4ecdc4;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-message {
+  text-align: center;
+  padding: 40px;
+  background: rgba(255, 107, 107, 0.1);
+  border: 2px solid rgba(255, 107, 107, 0.3);
+  border-radius: 20px;
+  color: white;
+}
+
+.error-message h3 {
+  color: #ff6b6b;
+  margin-bottom: 15px;
+}
+
+.retry-button {
+  background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 15px;
+}
+
+.retry-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .project-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .project-header h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
+  
+  .users-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .user-card {
+    padding: 15px;
+  }
+  
+  .user-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}

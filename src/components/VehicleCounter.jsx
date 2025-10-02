@@ -3,15 +3,21 @@ import { IoCar, IoBicycleSharp } from 'react-icons/io5'
 import { FaBus, FaTruckMoving, FaMotorcycle, FaPersonWalking } from 'react-icons/fa6'
 import './VehicleCounter.css'
 
-const VehicleCounter = ({ counts, onIncrement }) => {
-  const vehicles = [
-    { key: 'carros', name: 'Carros', icon: IoCar, color: '#ff6b6b' },
+const VehicleCounter = ({ counts, onIncrement, selectedType }) => {
+  // Definir todos los tipos de vehículos
+  const allVehicles = [
+    { key: 'autos', name: 'Autos', icon: IoCar, color: '#ff6b6b' },
     { key: 'buses', name: 'Buses', icon: FaBus, color: '#4ecdc4' },
     { key: 'camiones', name: 'Camiones', icon: FaTruckMoving, color: '#45b7d1' },
     { key: 'motos', name: 'Motos', icon: FaMotorcycle, color: '#feca57' },
     { key: 'bicicletas', name: 'Bicicletas', icon: IoBicycleSharp, color: '#26de81' },
     { key: 'peatones', name: 'Peatones', icon: FaPersonWalking, color: '#ff9ff3' }
   ]
+
+  // Filtrar vehículos según el tipo de conteo
+  const vehicles = selectedType === 'vehicles' 
+    ? allVehicles.filter(v => v.key !== 'peatones') // Vehículos: todos excepto peatones
+    : allVehicles.filter(v => v.key === 'peatones') // Peatones: solo peatones
 
   return (
     <div className="vehicle-counter">
@@ -27,7 +33,7 @@ const VehicleCounter = ({ counts, onIncrement }) => {
                 style={{ '--vehicle-color': vehicle.color }}
               >
                 <IconComponent 
-                  size={36} 
+                  size={22} 
                   className="vehicle-icon"
                 />
                 <span className="vehicle-label">{vehicle.name}</span>

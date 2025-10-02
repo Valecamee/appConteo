@@ -10,7 +10,9 @@ const FranjaProgress = ({
   nombreVideo,
   fecha,
   onNavigateToFranja,
-  franjasCompletadas = []
+  franjasCompletadas = [],
+  isFranjaCompletada,
+  getProgresoTotal
 }) => {
   // Formatear hora para mostrar (12h format)
   const formatTimeDisplay = (time24) => {
@@ -50,12 +52,36 @@ const FranjaProgress = ({
       <div className="video-info">
         <div className="video-details">
           <h3 className="video-name">📹 {nombreVideo}</h3>
-          <p className="video-date">📅 {new Date(fecha).toLocaleDateString('es-ES', { 
-            weekday: 'long', 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
-          })}</p>
+          <p className="video-date">📅 {(() => {
+            try {
+              // Si fecha es una string en formato YYYY-MM-DD, convertirla
+              if (typeof fecha === 'string' && fecha.includes('-')) {
+                const date = new Date(fecha + 'T00:00:00')
+                if (!isNaN(date.getTime())) {
+                  return date.toLocaleDateString('es-ES', { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                  })
+                }
+              }
+              // Si es un objeto Date válido
+              if (fecha instanceof Date && !isNaN(fecha.getTime())) {
+                return fecha.toLocaleDateString('es-ES', { 
+                  weekday: 'long', 
+                  year: 'numeric', 
+                  month: 'long', 
+                  day: 'numeric' 
+                })
+              }
+              // Fallback: mostrar la fecha como string
+              return fecha || 'Fecha no disponible'
+            } catch (error) {
+              console.error('Error formateando fecha:', error)
+              return fecha || 'Fecha no disponible'
+            }
+          })()}</p>
         </div>
         <div className="total-range">
           <span className="range-time">
@@ -63,6 +89,7 @@ const FranjaProgress = ({
           </span>
         </div>
       </div>
+
 
       {/* Franja actual */}
       <div className="current-franja">
@@ -114,16 +141,17 @@ const FranjaProgress = ({
       <div className="franja-navigation">
         <div className="nav-header">
           <span className="nav-title">🕐 Navegación por Franjas</span>
-          <span className="nav-subtitle">Click para saltar a una franja específica</span>
+          <span className="nav-subtitle">Click para navegar libremente entre franjas</span>
         </div>
         
         <div className="franjas-grid">
           {Array.from({ length: totalFranjas }, (_, i) => {
             const franjaNum = i + 1
             const franjaTime = getFranjaTime(franjaNum)
-            const isCompleted = franjasCompletadas.includes(franjaNum)
+            const isCompleted = isFranjaCompletada ? isFranjaCompletada(franjaNum) : franjasCompletadas.includes(franjaNum)
             const isCurrent = franjaNum === franjaActual
-            const isAccessible = franjaNum <= franjaActual || isCompleted
+            // ✅ PERMITIR NAVEGACIÓN LIBRE - El usuario puede ir a cualquier franja
+            const isAccessible = true
             
             return (
               <button

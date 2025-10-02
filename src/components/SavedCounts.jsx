@@ -2,7 +2,7 @@ import React from 'react'
 import './SavedCounts.css'
 
 const VEHICLES = [
-  { key: 'carros', name: 'Carros' },
+  { key: 'autos', name: 'Autos' },
   { key: 'buses', name: 'Buses' },
   { key: 'camiones', name: 'Camiones' },
   { key: 'motos', name: 'Motos' },

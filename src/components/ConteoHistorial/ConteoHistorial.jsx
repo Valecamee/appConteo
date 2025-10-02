@@ -36,7 +36,7 @@ const ConteoHistorial = ({ user, onBack }) => {
       const registrosCompletos = await conteoService.obtenerConteoCompleto(user.uid, conteo.conteoId)
       
       // Generar CSV
-      const csvContent = conteoService.generarCSV(registrosCompletos)
+      const csvContent = conteoService.generarCSV(registrosCompletos, {}, null)
       
       // Descargar archivo
       const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' })
